@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngMask'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $http) {
   
