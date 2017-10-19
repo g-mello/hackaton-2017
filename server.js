@@ -10,7 +10,7 @@ app.get('/', function (req, res) {
         server: 'PEIXOTO',
         database: 'cidadaoOnline',
     }
-
+    sql.close();
     sql.connect(config, function (err) {
         if (err) {
             console.log(err);
@@ -22,8 +22,9 @@ app.get('/', function (req, res) {
             if(err) {
                 console.log(err);
             }
-
-            res.send(recordset);
+            var response = recordset;
+            res.send(response);
+            console.log(response.recordset[0].logradouro);
         });
     });
 });
