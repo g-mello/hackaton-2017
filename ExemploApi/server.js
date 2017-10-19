@@ -2,7 +2,6 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     core_use = require('cors'),
-    app = express(),
     port = process.env.PORT || 15002,
     router = express.Router();
 
