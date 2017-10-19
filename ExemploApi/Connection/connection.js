@@ -1,9 +1,9 @@
 module.exports = {
     conString: {
-        user: 'user',
-        password: 'password',
-        server: 'Server\\MSSQLSERVER', 
-        database: 'DataBaseName',
+        user: 'Pedrow',
+        password: 'qwe123',
+        server: 'PEDROFIGUEREDO\\MSSQLSERVER', 
+        database: 'Tisi',
         options: {
             encrypt: true 
         }

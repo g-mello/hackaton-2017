@@ -8,13 +8,15 @@ var exemplo = {
                 // Parametros de entrada e saida
                 // .input('input_parameter', sql.Int, value)
                 //.output('output_parameter', sql.VarChar(50))
-                .execute('sp_buscaStatus', (err, result) => {
-                    return res.json(result.recordset[1]);
+                .execute('sp_SelCidadao', (err, result) => {
+                    sql.close();
+                    return res.json(result.recordset);
                 })
         })
         sql.on('error', err => {
             return res.json("Erro ao conectar com banco de dados" + err);
         })
+        
     }
 }
 
