@@ -79,11 +79,36 @@ var exemplo = {
             .input('cpf',  req.body.cpf)
             .input('telefone', req.body.telefone)
             .input('email', req.body.email)
-            .execute('SP_InsCidadao', (err, recordset) => {
+            .execute('sp_InsCidadao', (err, recordset) => {
                 if (err)
                     return res.status(403);
 
-                return res.json(recordset[0][0]);
+                console.log("Cidadao inserido com sucesso");
+                return res.json(recordset);
+            });
+    },
+    PostRequerimento: (req, res) => {
+        sql.request()
+            .input('id_cidadao',  req.body.id_cidadao)
+            .input('cod_controle', req.body.cod_controle)
+            .input('latitude',  req.body.latitude)
+            .input('longitude',  req.body.longitude)
+            .input('cep',  req.body.cep)
+            .input('logradouro', req.body.logradouro)
+            .input('numero', req.body.numero)
+            .input('bairro', req.body.bairro)
+            .input('complemento', req.body.complemento)
+            .input('cidade', req.body.cidade)
+            .input('uf', req.body.uf)
+            .input('ponto_referencia', req.body.ponto_referencia)
+            .input('observacao', req.body.observacao)
+            .input('status_req', req.body.status_req)
+            .execute('sp_InsRequerimento', (err, recordset) => {
+                if (err)
+                    return res.status(403);
+
+                console.log("Requerimento inserido com sucesso");
+                return res.json(recordset);
             });
     }
 }
