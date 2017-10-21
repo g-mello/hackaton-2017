@@ -17,7 +17,6 @@ var exemplo = {
     },
     PostCidadao: (req, res) => {
         try {
-
             sql.request()
                 .input('nome', req.body.nome)
                 .input('sobrenome', req.body.sobrenome)
@@ -28,7 +27,7 @@ var exemplo = {
                 .execute('sp_InsCidadao', (err, recordset) => {
                     if (err)
                         return res.status(400);
-                    
+
                     var numeroDocumento = res.json(recordset);
                     return res.json(numeroDocumento);
                 });
@@ -59,7 +58,35 @@ var exemplo = {
                 console.log("Requerimento inserido com sucesso");
                 return res.json(recordset);
             });
+    },
+    ValidarCPF: (req, res) => {
+        sql.request()
+            .input('cpf', req.body.cpf)
+            .execute('sp_ValidarCPF', (err, recordset) => {
+                if (err)
+                    return res.status(403);
+
+                console.log(recordset);
+
+                return res.json(recordset);
+            });
+    }/*,
+    VerificarCodControle: (req, res) => {
+        //console.log("Testando...");
+        //console.log(req.body.cod_controle);
+        sql.request()
+            .input('cod_controle',  req.body.cod_controle)
+            .execute('sp_GetCodControle', (err, recordset) => {
+                if (err)
+                    return res.status(403);
+
+                console.log(recordset);
+                
+                return res.json(recordset);
+            });
     }
+    */
+
 }
 
 module.exports = exemplo;

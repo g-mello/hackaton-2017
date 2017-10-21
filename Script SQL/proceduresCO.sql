@@ -4,9 +4,24 @@ CREATE PROCEDURE sp_SelCidadao
 AS
 SELECT * 
 FROM tb_cidadao
-GO
 
 
+<<<<<<< HEAD:Script SQL/procedures.sql
+CREATE PROCEDURE sp_InsCidadao
+    @nome VARCHAR(60),
+    @sobrenome VARCHAR(60),
+    @rg VARCHAR(12),
+    @cpf VARCHAR(11),
+    @telefone VARCHAR(12),
+    @email VARCHAR(80)
+AS
+BEGIN
+INSERT INTO tb_cidadao( nome, sobrenome, rg, cpf, telefone, email) VALUES
+(@nome, @sobrenome, @rg, cpf, @telefone, @email) 
+END
+
+=======
+>>>>>>> 09e5aacdcce72768e860b69ef545e5d9d2958f1a:Script SQL/proceduresCO.sql
 CREATE PROCEDURE sp_InsRequerimento
     @id_cidadao INTEGER,
     @cod_controle VARCHAR(60),
@@ -66,6 +81,25 @@ SELECT SCOPE_IDENTITY()
 END
 GO
 
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[sp_ValidarCPF]') AND objectproperty(id, N'IsPROCEDURE')=1)
+	DROP PROCEDURE [dbo].[sp_ValidarCPF]
+GO
+
+CREATE PROCEDURE [dbo].[sp_ValidarCPF]
+@p_cpf VARCHAR(11)
+	AS
+
+	BEGIN
+	
+		SELECT 1  
+          FROM tb_cidadao
+          WHERE cpf = @p_cpf  
+
+	END
+GO
+
+EXEC sp_ValidarCPF '1'
+GO
 
 CREATE PROCEDURE SP_InsCidadao
 	@nome       VARCHAR(60),
