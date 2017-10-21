@@ -3,7 +3,6 @@ CREATE PROCEDURE sp_SelCidadao
 AS
 SELECT * 
 FROM tb_cidadao
-GO
 
 
 CREATE PROCEDURE sp_InsCidadao
@@ -18,7 +17,6 @@ BEGIN
 INSERT INTO tb_cidadao( nome, sobrenome, rg, cpf, telefone, email) VALUES
 (@nome, @sobrenome, @rg, cpf, @telefone, @email) 
 END
-*/
 
 CREATE PROCEDURE sp_InsRequerimento
     @id_cidadao INTEGER,
@@ -71,4 +69,20 @@ INSERT INTO tb_requerimento(
 )
 END
 
+
+ALTER PROCEDURE sp_ValidarCPF
+@p_cpf VARCHAR(11)
+AS
+BEGIN
+
+SELECT 1  
+FROM tb_cidadao
+WHERE cpf = @p_cpf  
+
+END
+
+*/
+
+EXEC sp_ValidarCPF "1111-1"
+GO
 

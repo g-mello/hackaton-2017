@@ -5,6 +5,7 @@ var exemploRota = function(app) {
     app.get('/GetCidadao', exemplo.BuscaCidadao);
     app.post('/PostCidadao', exemplo.PostCidadao);
     app.post('/PostRequerimento', exemplo.PostRequerimento);
+    app.post('/ValidarCPF', exemplo.ValidarCPF);
 }
 
 module.exports = exemploRota;

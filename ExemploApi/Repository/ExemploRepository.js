@@ -110,7 +110,24 @@ var exemplo = {
                 console.log("Requerimento inserido com sucesso");
                 return res.json(recordset);
             });
+    },
+    ValidarCPF: (req, res) => {
+
+        console.log("Testando...");
+        console.log(req.body.cpf);
+
+        sql.request()
+            .input('cpf',  req.body.cpf)
+            .execute('sp_ValidarCPF', (err, recordset) => {
+                if (err)
+                    return res.status(403);
+
+                console.log(recordset);
+                
+                return res.json(recordset);
+            });
     }
+    
 }
 
 module.exports = exemplo;

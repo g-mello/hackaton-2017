@@ -1,7 +1,7 @@
 module.exports = {
     conString: {
         user: 'SA',
-        password: 'alph911*Alph911',
+        password: 'Qwe*123456',
         server: 'localhost',
         database: 'hackaton',
         options: {
