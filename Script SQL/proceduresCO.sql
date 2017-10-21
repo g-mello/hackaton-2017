@@ -88,7 +88,7 @@ CREATE PROCEDURE [dbo].[sp_ValidarCPF]
 
 	BEGIN
 	
-		SELECT TOP 1 1  
+		SELECT TOP 1 1  AS Possui_Cpf
           FROM tb_cidadao
           WHERE cpf = @p_cpf  
 
