@@ -14,29 +14,28 @@
       <ionitem class = "item-text-wrap">
         <ionlist>
           <label class = "item item-input">
-            <input type = "Text" placeholder = "Nome" id="nome" ng-model="nome">
+            <input type = "Text" placeholder = "Nome" id="nome" ng-model="cidadao.nome">
           </label>
           <label class = "item item-input">
-            <input type = "Text" placeholder = "Sobrenome" id="sobrenome" ng-model="sobrenome">
+            <input type = "Text" placeholder = "Sobrenome" id="sobrenome" ng-model="cidadao.sobrenome">
           </label>
           <label class = "item item-input">
-            <input type = "Text" placeholder = "CPF" id="cpf" ng-model="cpf" mask="999.999.999-99" clean="true" restrict="reject">
+            <input type = "Text" placeholder = "CPF" id="cpf" ng-model="cidadao.cpf" mask="999.999.999-99" clean="true" restrict="reject">
           </label>
           <label class = "item item-input">
-            <input type = "Text" placeholder = "RG" id="rg" ng-model="rg">
+            <input type = "Text" placeholder = "RG" id="rg" ng-model="cidadao.rg">
           </label>
           <label class = "item item-input">
-            <input type = "Text" placeholder = "Telefone" id="telefone" ng-model="telefone" mask="(99) 9?9999-9999" clean="true" restrict="reject">
+            <input type = "Text" placeholder = "Telefone" id="telefone" ng-model="cidadao.telefone" mask="(99) 9?9999-9999" clean="true" restrict="reject">
           </label>
           <label class = "item item-input">
-            <input type = "Text" placeholder = "E-MAIL" id="email" ng-model="email">
+            <input type = "Text" placeholder = "E-MAIL" id="email" ng-model="cidadao.email">
           </label>
         </ionlist>
       </ionitem>
     </div>
     <div class = "card">
-      <ion-item class = "item-text-wrap" menu-close href="#/app/dadosTerreno">
-        <button class="button button-dark button-block" href="#/app/dadosTerreno">Próximo</button>
+      <ion-item class = "item-text-wrap" menu-close href="#/app/dadosTerreno" ng-click="inserirCidadao()" >Próximo</button>
       </ion-item>
 
       <ion-item class = "item-text-wrap" menu-close href="#/app/home">

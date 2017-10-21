@@ -199,4 +199,14 @@ angular.module('starter', ['ionic', 'ngCordova', 'ngMask'])
     {idServico: '10', descricao: 'Colocação e manutenção de semáforo'},
     {idServico: '11', descricao: 'Retirada de postes de iluminação pública'},
   ]
+
+  $scope.inserirCidadao = function(){
+        $http.post('http://localhost:3000/PostCidadao', $scope.cidadao)
+        .then(function (response){
+            alert("Cidadao inserido com sucesso");
+            $scope.cidadao = {};
+        });
+			
+  };
+
 });

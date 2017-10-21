@@ -8,8 +8,9 @@ FROM tb_cidadao
 END
 
 EXEC sp_SelCidadao
+*/
 
-CREATE PROCEDURE sp_InsCidadao
+ALTER PROCEDURE sp_InsCidadao
     @nome VARCHAR(60),
     @sobrenome VARCHAR(60),
     @rg VARCHAR(12),
@@ -19,10 +20,11 @@ CREATE PROCEDURE sp_InsCidadao
 AS
 BEGIN
 INSERT INTO tb_cidadao( nome, sobrenome, rg, cpf, telefone, email) 
-VALUES (@nome, @sobrenome, @rg, cpf, @telefone, @email) 
+VALUES (@nome, @sobrenome, @rg, @cpf, @telefone, @email) 
 END
-*/
 
+
+/*
 CREATE PROCEDURE sp_InsRequerimento
     @id_cidadao INTEGER,
     @cod_controle VARCHAR(60),
@@ -79,6 +81,7 @@ INSERT INTO tb_requerimento(
     @status_req
 )
 END
+*/
 
 /*
 SELECT SCOPE_IDENTITY()
@@ -89,7 +92,10 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[sp_Validar
 	DROP PROCEDURE [dbo].[sp_ValidarCPF]
 GO
 
-ALTER PROCEDURE [dbo].[sp_ValidarCPF]
+*/
+
+/*
+CREATE PROCEDURE [dbo].[sp_ValidarCPF]
 @p_cpf VARCHAR(11)
 	AS
 
@@ -102,10 +108,12 @@ ALTER PROCEDURE [dbo].[sp_ValidarCPF]
 	END
 GO
 
-
 EXEC sp_ValidarCPF '1'
 GO
 
+*/
+
+/*
 ALTER PROCEDURE SP_InsCidadao
 	@nome       VARCHAR(60),
 	@sobrenome	VARCHAR(60),
@@ -127,7 +135,9 @@ GO
 declare @x int 
 EXEC @x = SP_InsCidadao 'no','no','no','no','no','no'
 SELECT @x
+*/
 
+/*
 CREATE PROCEDURE sp_GetCodControle
 @p_cpf VARCHAR(11)
 AS

@@ -17,7 +17,7 @@ var exemplo = {
         }
     },
     PostCidadao: (req, res) => {
-        try {
+        //try {
             sql.request()
                 .input('nome', req.body.nome)
                 .input('sobrenome', req.body.sobrenome)
@@ -25,19 +25,19 @@ var exemplo = {
                 .input('cpf', req.body.cpf)
                 .input('telefone', req.body.telefone)
                 .input('email', req.body.email)
-                .output('saida', sql.types.Int)
+                //.output('saida', sql.types.Int)
                 .execute('sp_InsCidadao', (err, recordset) => {
                     if (err)
                         return res.status(400);
 
-                    var out = sql.getOutput();
-                    cidadaoStorage(out);
+                    //var out = sql.getOutput();
+                    //cidadaoStorage(out);
                     // cidadaoStorage.UploadFile()
                     return res.json(recordset);
                 });
-        } catch (error) {
-            return res.status(400, "Erro  ao conectar com sp_InsCidadao: " + error);
-        }
+        //} catch (error) {
+        //    return res.status(400, "Erro  ao conectar com sp_InsCidadao: " + error);
+        //}
     },
     PostRequerimento: (req, res) => {
         console.log("Testando..");
