@@ -1,5 +1,3 @@
-DROP PROCEDURE SP_InsCidadao
-
 CREATE PROCEDURE sp_SelCidadao
 AS
 SELECT * 
@@ -82,7 +80,7 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[sp_Validar
 	DROP PROCEDURE [dbo].[sp_ValidarCPF]
 GO
 
-CREATE PROCEDURE [dbo].[sp_ValidarCPF]
+ALTER PROCEDURE [dbo].[sp_ValidarCPF]
 @p_cpf VARCHAR(11)
 	AS
 
@@ -94,6 +92,7 @@ CREATE PROCEDURE [dbo].[sp_ValidarCPF]
 
 	END
 GO
+
 
 EXEC sp_ValidarCPF '1'
 GO
@@ -118,3 +117,17 @@ GO
 declare @x int 
 EXEC @x = SP_InsCidadao 'no','no','no','no','no','no'
 SELECT @x
+
+CREATE PROCEDURE sp_GetCodControle
+@p_cpf VARCHAR(11)
+AS
+BEGIN
+
+SELECT r.cod_controle  
+FROM tb_cidadao c 
+INNER JOIN tb_requerimento r ON (c.id_cidadao = r.id_cidadao)
+WHERE cpf = @p_cpf  
+
+END
+
+

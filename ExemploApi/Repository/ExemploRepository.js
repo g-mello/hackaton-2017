@@ -60,6 +60,8 @@ var exemplo = {
             });
     },
     ValidarCPF: (req, res) => {
+        console.log("Testando..");
+        console.log(req.body.cpf);
         sql.request()
             .input('p_cpf', req.body.cpf)
             .execute('sp_ValidarCPF', (err, recordset) => {
@@ -68,12 +70,13 @@ var exemplo = {
 
                 return res.json(recordset[0]);
             });
-    }/*,
+    },
     VerificarCodControle: (req, res) => {
-        //console.log("Testando...");
-        //console.log(req.body.cod_controle);
+        console.log("Testando...");
+        console.log(req.body.p_cpf);
+
         sql.request()
-            .input('cod_controle',  req.body.cod_controle)
+            .input('p_cpf',  req.body.cpf)
             .execute('sp_GetCodControle', (err, recordset) => {
                 if (err)
                     return res.status(403);
@@ -83,7 +86,6 @@ var exemplo = {
                 return res.json(recordset);
             });
     }
-    */
 
 }
 
