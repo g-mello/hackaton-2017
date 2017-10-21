@@ -19,8 +19,8 @@ CREATE PROCEDURE sp_InsCidadao
     @email VARCHAR(80)
 AS
 BEGIN
-INSERT INTO tb_cidadao( nome, sobrenome, rg, cpf, telefone, email) VALUES
-(@nome, @sobrenome, @rg, cpf, @telefone, @email) 
+INSERT INTO tb_cidadao( nome, sobrenome, rg, cpf, telefone, email) 
+VALUES (@nome, @sobrenome, @rg, cpf, @telefone, @email) 
 END
 
 CREATE PROCEDURE sp_InsRequerimento
@@ -36,7 +36,7 @@ CREATE PROCEDURE sp_InsRequerimento
     @cidade VARCHAR(60),
     @uf CHAR(2),
     @ponto_referencia VARCHAR(100),
-    @observacao VARCHAR(MAX),
+    @servico VARCHAR(MAX),
     @caminho VARCHAR(120),
     @data_envio DATETIME,
     @status_req INTEGER
@@ -55,7 +55,7 @@ INSERT INTO tb_requerimento(
                         cidade,
                         uf,
                         ponto_referencia,
-                        observacao,
+                        servico,
                         caminho,
                         data_envio,
                         status_req                        
@@ -73,7 +73,7 @@ INSERT INTO tb_requerimento(
     @cidade,
     @uf,
     @ponto_referencia,
-    @observacao,
+    @servico,
     @caminho,
     @data_envio,
     @status_req
