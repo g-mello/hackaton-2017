@@ -24,7 +24,7 @@ CREATE TABLE [dbo].[tb_requerimento] (
   id_cidadao        INTEGER NOT NULL,
   cod_controle      VARCHAR(10) NOT NULL,
   latitude          VARCHAR(50) NULL,
-  longitude         VARCHAR(20) NOT NULL,
+  longitude         VARCHAR(50) NULL,
   cep               INTEGER NULL,
   logradouro        VARCHAR(100) NOT NULL,
   numero            INTEGER NULL, 
