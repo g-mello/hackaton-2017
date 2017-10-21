@@ -6,7 +6,7 @@ var exemploRota = function(app) {
     app.post('/PostCidadao', exemplo.PostCidadao);
     app.post('/PostRequerimento', exemplo.PostRequerimento);
     app.post('/ValidarCPF/', exemplo.ValidarCPF);
-    //app.post('/VerificarCodControle', exemplo.VerificarCodControle);
+    app.post('/VerificarCodControle', exemplo.VerificarCodControle);
 }
 
 module.exports = exemploRota;

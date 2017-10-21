@@ -1,6 +1,8 @@
 var config = require('../Connection/CidadaoOnlineConnection.js');
 var cidadaoStorage = require('../Storage/CidadaoOnlineStorage.js');
+
 const sql = require("smn-sql")(config.conString);
+const pathServer = "./Image/"
 
 var exemplo = {
     BuscaCidadao: (req, res) => {
@@ -31,7 +33,7 @@ var exemplo = {
                         return res.status(400);
                         
                     var out = sql.getOutput();
-                    return res.json(recordset);
+                    return res.json("Cidadão cadastrado com sucesso!");
                 });
         } catch (error) {
             return res.status(400, "Erro  ao conectar com sp_InsCidadao: " + error);
@@ -52,7 +54,7 @@ var exemplo = {
             .input('uf', req.body.uf)
             .input('ponto_referencia', req.body.ponto_referencia)
             .input('servico', req.body.servico)
-            .input('caminho', req.body.caminho)
+            .input('caminho', pathServer)
             .input('status_req', req.body.status_req)
             .output('id_requerimento', sql.types.Int)
             .execute('sp_InsRequerimento', (err, recordset) => {
@@ -60,8 +62,8 @@ var exemplo = {
                     return res.status(403);
 
                 var id_requerimento = sql.getOutput();
-                cidadaoStorage(id_requerimento);
-                return res.json("Cadastro inserido com sucesso!");
+                cidadaoStorage(id_requerimento, pathServer)
+                return res.json("Cadastro inserido com sucesso, Nº do atendimento: " + id_requerimento);
             });
     },
     ValidarCPF: (req, res) => {
@@ -73,12 +75,10 @@ var exemplo = {
 
                 return res.json(recordset[0]);
             });
-    }/*,
+    },
     VerificarCodControle: (req, res) => {
-        //console.log("Testando...");
-        //console.log(req.body.cod_controle);
         sql.request()
-            .input('cod_controle',  req.body.cod_controle)
+            .input('p_cpf',  req.body.cpf)
             .execute('sp_GetCodControle', (err, recordset) => {
                 if (err)
                     return res.status(403);
@@ -88,7 +88,6 @@ var exemplo = {
                 return res.json(recordset);
             });
     }
-    */
 
 }
 

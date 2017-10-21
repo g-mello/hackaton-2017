@@ -1,0 +1,38 @@
+<ion-view view-title="Trajeto" id="p1">
+  <ion-pane>
+    <ion-content ng-controller="AppCtrl">
+        <ion-pane>
+          <ion-item class = "item-text-wrap" menu-close href="#/app/home">
+            <button class="button button-dark button-block" href="#/app/home">Usar meu local atual</button>
+          </ion-item>
+          <ion-item class = "item-text-wrap" menu-close href="#/app/home">
+            <button class="button button-assertive button-block" href="#/app/home">Cancelar e utilizar CEP</button>
+          </ion-item>
+        <ion-nav-view></ion-nav-view>
+      </ion-pane>
+    </ion-content>
+  </ion-pane>
+</ion-view>
+<!--
+<!--
+<ion-view view-title="Trajeto" id="p1">
+  <ion-pane>
+    <ion-content ng-controller="AppCtrl">
+      <label class="item item-input">
+        <input type="text" placeholder="Endereço do terreno" ng-model="endereco">
+      </label>
+
+      <button class="button button-block" ng-click="Local()"> 
+        Buscar Local
+      </button>
+
+        <div><span id="litResultado">&nbsp;</span></div>
+        <iframe 
+      width="750" height="500" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" 
+      src="https://maps.google.com/maps?q=-20.5374713,-47.3894335&hl=es;z=14&amp;output=embed">
+     </iframe><br />
+    </ion-content>
+</ion-pane>
+</ion-view>
+
+

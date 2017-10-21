@@ -1,0 +1,47 @@
+<ion-view view-title="Dados solicitante">
+  <ion-content>
+
+    <br/>
+
+    <div class = "card" border>
+      <h4 align="center"> Por favor informe seus dados</h4>
+    </div>
+
+    
+
+    <div class = "card" border>
+      <h5 align="center"> Seus dados</h5>
+      <ionitem class = "item-text-wrap">
+        <ionlist>
+          <label class = "item item-input">
+            <input type = "Text" placeholder = "Nome" id="nome" ng-model="nome">
+          </label>
+          <label class = "item item-input">
+            <input type = "Text" placeholder = "Sobrenome" id="sobrenome" ng-model="sobrenome">
+          </label>
+          <label class = "item item-input">
+            <input type = "Text" placeholder = "CPF" id="cpf" ng-model="cpf">
+          </label>
+          <label class = "item item-input">
+            <input type = "Text" placeholder = "RG" id="rg" ng-model="rg">
+          </label>
+          <label class = "item item-input">
+            <input type = "Text" placeholder = "Telefone" id="telefone" ng-model="telefone">
+          </label>
+          <label class = "item item-input">
+            <input type = "Text" placeholder = "E-MAIL" id="email" ng-model="email">
+          </label>
+        </ionlist>
+      </ionitem>
+    </div>
+    <div class = "card">
+      <ion-item class = "item-text-wrap" menu-close href="#/app/dadosTerreno">
+        <button class="button button-dark button-block" href="#/app/dadosTerreno">Próximo</button>
+      </ion-item>
+
+      <ion-item class = "item-text-wrap" menu-close href="#/app/home">
+        <button class="button button-assertive button-block" href="#/app/home">Cancelar</button>
+      </ion-item>
+    </div>
+  </ion-content>
+</ion-view>
