@@ -61,14 +61,12 @@ var exemplo = {
     },
     ValidarCPF: (req, res) => {
         sql.request()
-            .input('cpf', req.body.cpf)
+            .input('p_cpf', req.body.cpf)
             .execute('sp_ValidarCPF', (err, recordset) => {
                 if (err)
                     return res.status(403);
 
-                console.log(recordset);
-
-                return res.json(recordset);
+                return res.json(recordset[0]);
             });
     }/*,
     VerificarCodControle: (req, res) => {
