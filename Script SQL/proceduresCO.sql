@@ -1,3 +1,4 @@
+/*
 CREATE PROCEDURE sp_SelCidadao
 AS
 SELECT * 
@@ -16,6 +17,7 @@ BEGIN
 INSERT INTO tb_cidadao( nome, sobrenome, rg, cpf, telefone, email) 
 VALUES (@nome, @sobrenome, @rg, cpf, @telefone, @email) 
 END
+*/
 
 CREATE PROCEDURE sp_InsRequerimento
     @id_cidadao INTEGER,
@@ -72,6 +74,9 @@ INSERT INTO tb_requerimento(
     @data_envio,
     @status_req
 )
+END
+
+/*
 SELECT SCOPE_IDENTITY()
 END
 GO
@@ -130,4 +135,4 @@ WHERE cpf = @p_cpf
 
 END
 
-
+*/

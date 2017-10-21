@@ -3,7 +3,7 @@ module.exports = {
         user: 'SA',
         password: 'Qwe*123456',
         server: 'localhost', 
-        database: 'hackaton',
+        database: 'CidadaoOnline',
         options: {
             encrypt: true 
         }
