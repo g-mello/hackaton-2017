@@ -1,3 +1,21 @@
+CREATE DATABASE CidadaoOnline
+USE CidadaoOnline
+
+IF EXISTS(SELECT TOP 1 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tb_cidadao]')) 
+	DROP TABLE [dbo].[tb_cidadao]
+
+CREATE TABLE [dbo].[tb_cidadao] (
+  id_cidadao INTEGER NOT NULL IDENTITY(1,1),
+  nome      VARCHAR(60) NOT NULL,
+  sobrenome VARCHAR(60) NOT NULL,
+  rg        VARCHAR(12) NOT NULL,
+  cpf       VARCHAR(11) NOT NULL,
+  telefone  VARCHAR(12) NOT NULL,
+  email     VARCHAR(80) NULL,
+  CONSTRAINT pk_tb_cidadao_id_cidadao PRIMARY KEY(id_cidadao)
+);
+GO
+
 IF EXISTS(SELECT TOP 1 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tb_requerimento]'))
 	DROP TABLE [dbo].[tb_requerimento]
 
@@ -25,20 +43,7 @@ CREATE TABLE [dbo].[tb_requerimento] (
 );
 GO
 
-IF EXISTS(SELECT TOP 1 1 FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tb_cidadao]')) 
-	DROP TABLE [dbo].[tb_cidadao]
 
-CREATE TABLE [dbo].[tb_cidadao] (
-  id_cidadao INTEGER NOT NULL IDENTITY(1,1),
-  nome      VARCHAR(60) NOT NULL,
-  sobrenome VARCHAR(60) NOT NULL,
-  rg        VARCHAR(12) NOT NULL,
-  cpf       VARCHAR(11) NOT NULL,
-  telefone  VARCHAR(12) NOT NULL,
-  email     VARCHAR(80) NULL,
-  CONSTRAINT pk_tb_cidadao_id_cidadao PRIMARY KEY(id_cidadao)
-);
-GO
 
 
 
