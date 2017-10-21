@@ -1,11 +1,10 @@
-var cidadaoRepository = require('../Repository/ExemploRepository.js');
+var fs = require('fs');
 const servidor = "./image/";
 
 cidadaoService = {
-    Post: (req, res) => {
-        var requerimento = cidadaoRepository.PostRequerimento;
-
-        saveImage(requerimento, imagemArray);
+    UploadFile: (nomeArquivo, data) => {
+        var imagemArray = getByteArray('./image/IMG_23122016_085544.png')
+        SalvarImagem(nomeArquivo, imagemArray);
     }
 }
 
@@ -15,11 +14,15 @@ function SalvarImagem(nomeArquivo, data) {
         myBuffer[i] = data[i];
     }
     fs.writeFile(servidor + nomeArquivo, myBuffer, function (err) {
-        if (err)
-            return res.status(400, "Falha ao salvar arquivo")
-
-        return res.status(200);
     });
+}
+
+function getByteArray(filePath) {
+    let fileData = fs.readFileSync(filePath).toString('hex');
+    let result = []
+    for (var i = 0; i < fileData.length; i += 2)
+        result.push('0x' + fileData[i] + '' + fileData[i + 1])
+    return result;
 }
 
 module.exports = cidadaoService;
