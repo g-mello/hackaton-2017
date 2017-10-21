@@ -33,9 +33,9 @@ CREATE TABLE [dbo].[tb_requerimento] (
   cidade            VARCHAR(60)   NOT NULL,
   uf                CHAR(2)       NOT NULL,
   ponto_referencia  VARCHAR(100)  NULL,
-  observacao        VARCHAR(MAX)  NULL,
-  caminho         VARCHAR(120)    NOT NULL,
-  data_envio      DATETIME        NOT NULL,
+  servico           INTEGER       NOT NULL,
+  caminho           VARCHAR(120)  NOT NULL,
+  data_envio        DATETIME      NOT NULL,
   status_req        INTEGER       NOT NULL,
   CONSTRAINT pk_tb_requerimento_id_requerimento PRIMARY KEY(id_requerimeto),
   CONSTRAINT fk_tb_requerimento_idcidadao FOREIGN KEY(id_cidadao)

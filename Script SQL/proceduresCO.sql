@@ -6,7 +6,6 @@ SELECT *
 FROM tb_cidadao
 
 
-<<<<<<< HEAD:Script SQL/procedures.sql
 CREATE PROCEDURE sp_InsCidadao
     @nome VARCHAR(60),
     @sobrenome VARCHAR(60),
@@ -16,12 +15,10 @@ CREATE PROCEDURE sp_InsCidadao
     @email VARCHAR(80)
 AS
 BEGIN
-INSERT INTO tb_cidadao( nome, sobrenome, rg, cpf, telefone, email) VALUES
-(@nome, @sobrenome, @rg, cpf, @telefone, @email) 
+INSERT INTO tb_cidadao( nome, sobrenome, rg, cpf, telefone, email) 
+VALUES (@nome, @sobrenome, @rg, cpf, @telefone, @email) 
 END
 
-=======
->>>>>>> 09e5aacdcce72768e860b69ef545e5d9d2958f1a:Script SQL/proceduresCO.sql
 CREATE PROCEDURE sp_InsRequerimento
     @id_cidadao INTEGER,
     @cod_controle VARCHAR(60),
@@ -35,7 +32,7 @@ CREATE PROCEDURE sp_InsRequerimento
     @cidade VARCHAR(60),
     @uf CHAR(2),
     @ponto_referencia VARCHAR(100),
-    @observacao VARCHAR(MAX),
+    @servico VARCHAR(MAX),
     @caminho VARCHAR(120),
     @data_envio DATETIME,
     @status_req INTEGER
@@ -54,7 +51,7 @@ INSERT INTO tb_requerimento(
                         cidade,
                         uf,
                         ponto_referencia,
-                        observacao,
+                        servico,
                         caminho,
                         data_envio,
                         status_req                        
@@ -72,7 +69,7 @@ INSERT INTO tb_requerimento(
     @cidade,
     @uf,
     @ponto_referencia,
-    @observacao,
+    @servico,
     @caminho,
     @data_envio,
     @status_req
