@@ -2,7 +2,7 @@ var config = require('../Connection/CidadaoOnlineConnection.js');
 var cidadaoStorage = require('../Storage/CidadaoOnlineStorage.js');
 
 const sql = require("smn-sql")(config.conString);
-const pathServer = "./Image/"
+const pathServer = "\\\\192.168.18.30\\anexoCidadao\\"//"./Image/"
 
 var exemplo = {
     BuscaCidadao: (req, res) => {

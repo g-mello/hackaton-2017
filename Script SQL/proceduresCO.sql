@@ -44,18 +44,22 @@ CREATE PROCEDURE [dbo].[sp_InsRequerimento]
     @caminho VARCHAR(120),
     @status_req INTEGER,
 	@id_requerimento INT = NULL OUTPUT
+
+	/*
+		EXEC
+	*/
 AS
 	BEGIN
-	INSERT INTO [dbo].[tb_requerimento](id_cidadao, cod_controle, latitude, longitude, cep, logradouro, numero, bairro, complemento, cidade, uf, ponto_referencia, servico, caminho, data_envio, status_req) 
-		VALUES (@id_cidadao, @cod_controle, @latitude, @longitude, @cep, @logradouro, @numero, @bairro, @complemento, @cidade, @uf, @ponto_referencia, @servico, @caminho, GETDATE(), @status_req)
+		INSERT INTO [dbo].[tb_requerimento](id_cidadao, cod_controle, latitude, longitude, cep, logradouro, numero, bairro, complemento, cidade, uf, ponto_referencia, servico, caminho, data_envio, status_req) 
+			VALUES (@id_cidadao, @cod_controle, @latitude, @longitude, @cep, @logradouro, @numero, @bairro, @complemento, @cidade, @uf, @ponto_referencia, @servico, @caminho, GETDATE(), @status_req)
 
-		SET  @id_requerimento =  SCOPE_IDENTITY()
+			SET  @id_requerimento =  SCOPE_IDENTITY()
 
-		--UPDATE [dbo].[tb_requerimento]
-		--	SET caminho = caminho + CAST(@id_requerimento AS VARCHAR(50)) + '.jpg'  
-		--	WHERE id_requerimeto = @id_requerimento
+			UPDATE [dbo].[tb_requerimento]
+				SET caminho = caminho + CAST(@id_requerimento AS VARCHAR(50)) + '.jpg'  
+				WHERE id_requerimeto = @id_requerimento
 
-END
+	END
 GO
 
 SELECT * FROM [tb_requerimento]
