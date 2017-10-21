@@ -1,3 +1,4 @@
+
 CREATE TABLE tb_cidadao (
   id_cidadao INTEGER NOT NULL IDENTITY(1,1),
   nome      VARCHAR(60) NOT NULL,
@@ -10,11 +11,12 @@ CREATE TABLE tb_cidadao (
 );
 GO
 
+
 CREATE TABLE tb_requerimento (
   id_requerimeto    INTEGER NOT NULL IDENTITY(1,1),
   id_cidadao        INTEGER NOT NULL,
   cod_controle      VARCHAR(10) NOT NULL,
-  latitudade        VARCHAR(20) NOT NULL,
+  latitude        VARCHAR(20) NOT NULL,
   longitude         VARCHAR(20) NOT NULL,
   cep               INTEGER NULL,
   logradouro        VARCHAR(100) NOT NULL,
@@ -45,4 +47,3 @@ CREATE TABLE tb_anexo (
 );
 GO
 
-drop table tb_requerimento
