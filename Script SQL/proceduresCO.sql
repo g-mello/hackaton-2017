@@ -1,9 +1,13 @@
 /*
 CREATE PROCEDURE sp_SelCidadao
 AS
+
+BEGIN
 SELECT * 
 FROM tb_cidadao
+END
 
+EXEC sp_SelCidadao
 
 CREATE PROCEDURE sp_InsCidadao
     @nome VARCHAR(60),
@@ -102,19 +106,20 @@ GO
 EXEC sp_ValidarCPF '1'
 GO
 
-CREATE PROCEDURE SP_InsCidadao
+ALTER PROCEDURE SP_InsCidadao
 	@nome       VARCHAR(60),
 	@sobrenome	VARCHAR(60),
 	@rg			VARCHAR(12),
 	@cpf		VARCHAR(11),
 	@telefone	VARCHAR(12),
-	@email		VARCHAR(80)
+	@email		VARCHAR(80),
+	@saida		INT OUTPUT
 AS 
 	BEGIN
 		BEGIN TRANSACTION
 		INSERT INTO [dbo].[tb_cidadao] (nome, sobrenome, rg, cpf, telefone, email)
 			VALUES(@nome, @sobrenome, @rg, @cpf, @telefone, @email)
-		SELECT  SCOPE_IDENTITY() AS 'id_cidadao'
+		SET @saida =  SCOPE_IDENTITY()
 		COMMIT TRANSACTION
 	END
 GO
