@@ -10,6 +10,6 @@ app.use(core_use());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-require('./Controller/ControllerExemplo')(app);
+require('./Controller/CidadaoOnlineController')(app);
 app.listen(port);
 console.log("Hey, listen in port: " + port);

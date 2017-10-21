@@ -2,11 +2,14 @@ DROP PROCEDURE SP_InsCidadao
 
 CREATE PROCEDURE sp_SelCidadao
 AS
+
+BEGIN
 SELECT * 
 FROM tb_cidadao
+END
 
+EXEC sp_SelCidadao
 
-<<<<<<< HEAD:Script SQL/procedures.sql
 CREATE PROCEDURE sp_InsCidadao
     @nome VARCHAR(60),
     @sobrenome VARCHAR(60),
@@ -20,8 +23,6 @@ INSERT INTO tb_cidadao( nome, sobrenome, rg, cpf, telefone, email) VALUES
 (@nome, @sobrenome, @rg, cpf, @telefone, @email) 
 END
 
-=======
->>>>>>> 09e5aacdcce72768e860b69ef545e5d9d2958f1a:Script SQL/proceduresCO.sql
 CREATE PROCEDURE sp_InsRequerimento
     @id_cidadao INTEGER,
     @cod_controle VARCHAR(60),
@@ -101,19 +102,20 @@ GO
 EXEC sp_ValidarCPF '1'
 GO
 
-CREATE PROCEDURE SP_InsCidadao
+ALTER PROCEDURE SP_InsCidadao
 	@nome       VARCHAR(60),
 	@sobrenome	VARCHAR(60),
 	@rg			VARCHAR(12),
 	@cpf		VARCHAR(11),
 	@telefone	VARCHAR(12),
-	@email		VARCHAR(80)
+	@email		VARCHAR(80),
+	@saida		INT OUTPUT
 AS 
 	BEGIN
 		BEGIN TRANSACTION
 		INSERT INTO [dbo].[tb_cidadao] (nome, sobrenome, rg, cpf, telefone, email)
 			VALUES(@nome, @sobrenome, @rg, @cpf, @telefone, @email)
-		SELECT  SCOPE_IDENTITY() AS 'id_cidadao'
+		SET @saida =  SCOPE_IDENTITY()
 		COMMIT TRANSACTION
 	END
 GO

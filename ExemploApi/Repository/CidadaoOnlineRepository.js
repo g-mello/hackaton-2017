@@ -1,4 +1,5 @@
-var config = require('../Connection/connection.js');
+var config = require('../Connection/CidadaoOnlineConnection.js');
+var cidadaoStorage = require('../Storage/CidadaoOnlineStorage.js');
 const sql = require("smn-sql")(config.conString);
 
 var exemplo = {
@@ -24,12 +25,15 @@ var exemplo = {
                 .input('cpf', req.body.cpf)
                 .input('telefone', req.body.telefone)
                 .input('email', req.body.email)
+                .output('saida', sql.types.Int)
                 .execute('sp_InsCidadao', (err, recordset) => {
                     if (err)
                         return res.status(400);
 
-                    var numeroDocumento = res.json(recordset);
-                    return res.json(numeroDocumento);
+                    var out = sql.getOutput();
+                    cidadaoStorage(out);
+                    // cidadaoStorage.UploadFile()
+                    return res.json(recordset);
                 });
         } catch (error) {
             return res.status(400, "Erro  ao conectar com sp_InsCidadao: " + error);

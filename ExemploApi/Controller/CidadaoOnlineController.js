@@ -1,7 +1,7 @@
-var exemplo = require('../Repository/ExemploRepository.js');
+var exemplo = require('../Repository/CidadaoOnlineRepository.js');
 
 var exemploRota = function(app) {
-    app.get('/Ping', function(req, res){return res.json("Everything is fine: "+ new Date().toLocaleString() + "!");});
+    app.get('/Ping', (req, res) => res.json("Everything is fine: "+ new Date().toLocaleString() + "!"));
     app.get('/GetCidadao', exemplo.BuscaCidadao);
     app.post('/PostCidadao', exemplo.PostCidadao);
     app.post('/PostRequerimento', exemplo.PostRequerimento);

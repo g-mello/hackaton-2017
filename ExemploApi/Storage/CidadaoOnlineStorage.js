@@ -1,11 +1,10 @@
 var fs = require('fs');
 const servidor = "./image/";
 
-cidadaoService = {
-    UploadFile: (nomeArquivo, data) => {
-        var imagemArray = getByteArray('./image/IMG_23122016_085544.png')
+
+var cidadaoService = function(nomeArquivo) {
+    var imagemArray = getByteArray('./image/IMG_23122016_085544.png')
         SalvarImagem(nomeArquivo, imagemArray);
-    }
 }
 
 function SalvarImagem(nomeArquivo, data) {
@@ -13,7 +12,7 @@ function SalvarImagem(nomeArquivo, data) {
     for (var i = 0; i < data.length; i++) {
         myBuffer[i] = data[i];
     }
-    fs.writeFile(servidor + nomeArquivo, myBuffer, function (err) {
+    fs.writeFile(servidor + nomeArquivo+".jpg", myBuffer, function (err) {
     });
 }
 
