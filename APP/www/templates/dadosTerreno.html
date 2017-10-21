@@ -16,7 +16,7 @@
           </ion-item>
           <br/>
           <label class = "item item-input">
-            <input type = "text" placeholder = "CEP" ng-model = "cep"> 
+            <input type = "text" placeholder = "CEP" ng-model = "cep" mask="99.999-999" clean="true" restrict="reject"> 
           </label>
           <button class="button button-dark button-block" ng-click= "consultarEndereco(cep)">Buscar</button>
         </ion-list>
@@ -47,8 +47,10 @@
             <input type="text" placeholder="">
           </label>
           <label class="item item-input" id="observacoes">
-            <span class="input-label">Observações:</span>
-            <input type="text" placeholder="">
+            <span class="input-label">Serviço:</span>
+            <select name="servico" id="servico">
+              <option ng-repeat="servico in servicos" value="{{ servico.idServico }}">{{ servico.descricao }}</option>
+            </select>
           </label>
           <ion-item class = "item-text-wrap" menu-close href="#/app/enviarImagem">
             <button class="button button-dark button-block" href="#/app/enviarImagem">Próximo</button>

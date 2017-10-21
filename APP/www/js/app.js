@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ngCordova'])
+angular.module('starter', ['ionic', 'ngCordova', 'ngMask'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -130,27 +130,6 @@ angular.module('starter', ['ionic', 'ngCordova'])
   $urlRouterProvider.otherwise('/app/home');
 })
 
-// rota do mapa 
-/*
-.config(function($stateProvider, $urlRouterProvider) {
- 
-  $stateProvider
-  .state('map', {
-    url: '/',
-    templateUrl: 'templates/map.html',
-    controller: 'MapCtrl'
-  });
- 
-  $urlRouterProvider.otherwise("/");
- 
-})
-
-*/
-
-
-
-//--------------------- Parte do Mapa 
-
 .controller('MapCtrl', function($scope, $state, $cordovaGeolocation) {
   var options = {timeout: 10000, enableHighAccuracy: true};
  
@@ -206,4 +185,18 @@ angular.module('starter', ['ionic', 'ngCordova'])
       alert('Sorry, no service available!')
     });
   }
+
+  $scope.servicos = [
+    {idServico: '1', descricao: 'Requerimento para limpeza de terrenos'},
+    {idServico: '2', descricao: 'Requerimento de reparo de vias públicas'},
+    {idServico: '3', descricao: 'Requerimento de poda de árvores'},
+    {idServico: '4', descricao: 'Limpeza de área pública'},
+    {idServico: '5', descricao: 'Limpeza de boca de lobo'},
+    {idServico: '6', descricao: 'Limpeza de imóvel abandonado'},
+    {idServico: '7', descricao: 'Colocação de lâmpada'},
+    {idServico: '8', descricao: 'Retirada de boca de lobo'},
+    {idServico: '9', descricao: 'Abertura de via pública'},
+    {idServico: '10', descricao: 'Colocação e manutenção de semáforo'},
+    {idServico: '11', descricao: 'Retirada de postes de iluminação pública'},
+  ]
 });
