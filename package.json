@@ -3,13 +3,16 @@
   "version": "1.1.1",
   "description": "Cidadaoonline: An Ionic project",
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "express": "^4.16.2",
-    "gulp": "^3.5.6",
-    "gulp-concat": "^2.2.0",
-    "gulp-minify-css": "^0.3.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-sass": "^2.0.4",
-    "mssql": "^4.1.0"
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify-css": "^0.3.13",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "mssql": "^4.1.0",
+    "smn-sql": "^1.0.1"
   },
   "devDependencies": {
     "bower": "^1.3.3",
