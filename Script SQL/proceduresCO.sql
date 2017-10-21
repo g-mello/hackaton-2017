@@ -23,64 +23,41 @@ INSERT INTO tb_cidadao( nome, sobrenome, rg, cpf, telefone, email)
 VALUES (@nome, @sobrenome, @rg, cpf, @telefone, @email) 
 END
 
-CREATE PROCEDURE sp_InsRequerimento
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[sp_InsRequerimento]') AND objectproperty(id, N'IsPROCEDURE')=1)
+	DROP PROCEDURE [dbo].[sp_InsRequerimento]
+GO
+
+CREATE PROCEDURE [dbo].[sp_InsRequerimento]
     @id_cidadao INTEGER,
     @cod_controle VARCHAR(60),
-    @latitude VARCHAR(20),
-    @longitude VARCHAR(20),
-    @cep INTEGER,
+    @latitude VARCHAR(50) = null,
+    @longitude VARCHAR(50) = null,
+    @cep INTEGER = null,
     @logradouro VARCHAR(100),
-    @numero INTEGER,
+    @numero INTEGER = null,
     @bairro VARCHAR(60),
-    @complemento VARCHAR(60),
+    @complemento VARCHAR(60) = null,
     @cidade VARCHAR(60),
     @uf CHAR(2),
-    @ponto_referencia VARCHAR(100),
+    @ponto_referencia VARCHAR(100) = null,
     @servico VARCHAR(MAX),
     @caminho VARCHAR(120),
-    @data_envio DATETIME,
-    @status_req INTEGER
+    @status_req INTEGER,
+	@id_requerimento INT = NULL OUTPUT
 AS
-BEGIN
-INSERT INTO tb_requerimento( 
-                        id_cidadao,
-                        cod_controle,
-                        latitude,
-                        longitude,
-                        cep, 
-                        logradouro,
-                        numero,
-                        bairro,
-                        complemento,
-                        cidade,
-                        uf,
-                        ponto_referencia,
-                        servico,
-                        caminho,
-                        data_envio,
-                        status_req                        
-) VALUES
-(
-    @id_cidadao,
-    @cod_controle,
-    @latitude,
-    @longitude,
-    @cep,
-    @logradouro,
-    @numero,
-    @bairro,
-    @complemento,
-    @cidade,
-    @uf,
-    @ponto_referencia,
-    @servico,
-    @caminho,
-    @data_envio,
-    @status_req
-)
-SELECT SCOPE_IDENTITY()
+	BEGIN
+	INSERT INTO [dbo].[tb_requerimento](id_cidadao, cod_controle, latitude, longitude, cep, logradouro, numero, bairro, complemento, cidade, uf, ponto_referencia, servico, caminho, data_envio, status_req) 
+		VALUES (@id_cidadao, @cod_controle, @latitude, @longitude, @cep, @logradouro, @numero, @bairro, @complemento, @cidade, @uf, @ponto_referencia, @servico, @caminho, GETDATE(), @status_req)
+
+		SET  @id_requerimento =  SCOPE_IDENTITY()
+
+		UPDATE [dbo].[tb_requerimento]
+			SET caminho = caminho + CAST(@id_requerimento AS VARCHAR(50)) + '.jpg'  
+			WHERE id_requerimeto = @id_requerimento
 END
 GO
+
+SELECT * FROM [tb_requerimento]
 
 IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'[dbo].[sp_ValidarCPF]') AND objectproperty(id, N'IsPROCEDURE')=1)
 	DROP PROCEDURE [dbo].[sp_ValidarCPF]
@@ -109,7 +86,7 @@ ALTER PROCEDURE SP_InsCidadao
 	@cpf		VARCHAR(11),
 	@telefone	VARCHAR(12),
 	@email		VARCHAR(80),
-	@saida		INT OUTPUT
+	@saida		INT = null OUTPUT
 AS 
 	BEGIN
 		BEGIN TRANSACTION

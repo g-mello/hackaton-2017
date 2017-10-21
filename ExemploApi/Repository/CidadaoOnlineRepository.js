@@ -29,10 +29,8 @@ var exemplo = {
                 .execute('sp_InsCidadao', (err, recordset) => {
                     if (err)
                         return res.status(400);
-
+                        
                     var out = sql.getOutput();
-                    cidadaoStorage(out);
-                    // cidadaoStorage.UploadFile()
                     return res.json(recordset);
                 });
         } catch (error) {
@@ -53,14 +51,17 @@ var exemplo = {
             .input('cidade', req.body.cidade)
             .input('uf', req.body.uf)
             .input('ponto_referencia', req.body.ponto_referencia)
-            .input('observacao', req.body.observacao)
+            .input('servico', req.body.servico)
+            .input('caminho', req.body.caminho)
             .input('status_req', req.body.status_req)
+            .output('id_requerimento', sql.types.Int)
             .execute('sp_InsRequerimento', (err, recordset) => {
                 if (err)
                     return res.status(403);
 
-                console.log("Requerimento inserido com sucesso");
-                return res.json(recordset);
+                var id_requerimento = sql.getOutput();
+                cidadaoStorage(id_requerimento);
+                return res.json("Cadastro inserido com sucesso!");
             });
     },
     ValidarCPF: (req, res) => {
