@@ -1,3 +1,4 @@
+
 CREATE DATABASE CidadaoOnline
 USE CidadaoOnline
 

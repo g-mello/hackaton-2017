@@ -40,6 +40,8 @@ var exemplo = {
         }
     },
     PostRequerimento: (req, res) => {
+        console.log("Testando..");
+        console.log(req.body);
         sql.request()
             .input('id_cidadao', req.body.id_cidadao)
             .input('cod_controle', req.body.cod_controle)
@@ -53,7 +55,9 @@ var exemplo = {
             .input('cidade', req.body.cidade)
             .input('uf', req.body.uf)
             .input('ponto_referencia', req.body.ponto_referencia)
-            .input('observacao', req.body.observacao)
+            .input('servico', req.body.servico)
+            .input('caminho', req.body.caminho)
+            .input('data_envio', req.body.data_envio)
             .input('status_req', req.body.status_req)
             .execute('sp_InsRequerimento', (err, recordset) => {
                 if (err)
@@ -64,6 +68,8 @@ var exemplo = {
             });
     },
     ValidarCPF: (req, res) => {
+        console.log("Testando..");
+        console.log(req.body.cpf);
         sql.request()
             .input('p_cpf', req.body.cpf)
             .execute('sp_ValidarCPF', (err, recordset) => {
@@ -72,12 +78,13 @@ var exemplo = {
 
                 return res.json(recordset[0]);
             });
-    }/*,
+    },
     VerificarCodControle: (req, res) => {
-        //console.log("Testando...");
-        //console.log(req.body.cod_controle);
+        console.log("Testando...");
+        console.log(req.body.p_cpf);
+
         sql.request()
-            .input('cod_controle',  req.body.cod_controle)
+            .input('p_cpf',  req.body.cpf)
             .execute('sp_GetCodControle', (err, recordset) => {
                 if (err)
                     return res.status(403);
@@ -87,7 +94,6 @@ var exemplo = {
                 return res.json(recordset);
             });
     }
-    */
 
 }
 
