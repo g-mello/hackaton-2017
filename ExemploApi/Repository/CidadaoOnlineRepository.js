@@ -31,17 +31,16 @@ var exemplo = {
                 .execute('sp_InsCidadao', (err, recordset) => {
                     if (err)
                         return res.status(400);
-<<<<<<< HEAD
 
                     //var out = sql.getOutput();
                     //cidadaoStorage(out);
                     // cidadaoStorage.UploadFile()
                     return res.json(recordset);
-=======
+
                         
-                    var out = sql.getOutput();
+                    //var out = sql.getOutput();
                     return res.json("Cidadão cadastrado com sucesso!");
->>>>>>> cfa507d7fc42c9a231ccbd5d16b16afa70ce363b
+
                 });
         //} catch (error) {
         //    return res.status(400, "Erro  ao conectar com sp_InsCidadao: " + error);
