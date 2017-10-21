@@ -1,4 +1,5 @@
-var exemplo = require('../Repository/ExemploRepository.js')
+var exemplo = require('../Repository/ExemploRepository.js'),
+    cidadaoOnlineService = require('../Services/CidadaoOnlineServices.js')
 
 var exemploRota = function(app) {
     app.get('/Ping', function(req, res){return res.json("Everything is fine: "+ new Date().toLocaleString() + "!");});
