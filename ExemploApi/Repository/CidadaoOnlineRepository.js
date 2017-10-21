@@ -1,6 +1,8 @@
 var config = require('../Connection/CidadaoOnlineConnection.js');
 var cidadaoStorage = require('../Storage/CidadaoOnlineStorage.js');
+
 const sql = require("smn-sql")(config.conString);
+const pathServer = "\\\\192.168.18.30\\anexoCidadao\\"//"./Image/"
 
 var exemplo = {
     BuscaCidadao: (req, res) => {
@@ -29,19 +31,23 @@ var exemplo = {
                 .execute('sp_InsCidadao', (err, recordset) => {
                     if (err)
                         return res.status(400);
+<<<<<<< HEAD
 
                     //var out = sql.getOutput();
                     //cidadaoStorage(out);
                     // cidadaoStorage.UploadFile()
                     return res.json(recordset);
+=======
+                        
+                    var out = sql.getOutput();
+                    return res.json("Cidadão cadastrado com sucesso!");
+>>>>>>> cfa507d7fc42c9a231ccbd5d16b16afa70ce363b
                 });
         //} catch (error) {
         //    return res.status(400, "Erro  ao conectar com sp_InsCidadao: " + error);
         //}
     },
     PostRequerimento: (req, res) => {
-        console.log("Testando..");
-        console.log(req.body);
         sql.request()
             .input('id_cidadao', req.body.id_cidadao)
             .input('cod_controle', req.body.cod_controle)
@@ -56,20 +62,19 @@ var exemplo = {
             .input('uf', req.body.uf)
             .input('ponto_referencia', req.body.ponto_referencia)
             .input('servico', req.body.servico)
-            .input('caminho', req.body.caminho)
-            .input('data_envio', req.body.data_envio)
+            .input('caminho', pathServer)
             .input('status_req', req.body.status_req)
+            .output('id_requerimento', sql.types.Int)
             .execute('sp_InsRequerimento', (err, recordset) => {
                 if (err)
                     return res.status(403);
 
-                console.log("Requerimento inserido com sucesso");
-                return res.json(recordset);
+                var id_requerimento = sql.getOutput();
+                cidadaoStorage(id_requerimento, pathServer)
+                return res.json("Cadastro inserido com sucesso, Nº do atendimento: " + id_requerimento);
             });
     },
     ValidarCPF: (req, res) => {
-        console.log("Testando..");
-        console.log(req.body.cpf);
         sql.request()
             .input('p_cpf', req.body.cpf)
             .execute('sp_ValidarCPF', (err, recordset) => {
@@ -80,9 +85,6 @@ var exemplo = {
             });
     },
     VerificarCodControle: (req, res) => {
-        console.log("Testando...");
-        console.log(req.body.p_cpf);
-
         sql.request()
             .input('p_cpf',  req.body.cpf)
             .execute('sp_GetCodControle', (err, recordset) => {
